@@ -89,7 +89,7 @@ tidy:
 					mv $(OBJECTS) ./objects/
 					mv $(PF_OBJECTS) $(PF_PATH)objects/
 					mv $(NAME) ../
-					echo "$(WHITE)\n · Libft compilation complete.\n"
+					echo "$(WHITE)\n · Libft compilation complete."
 clean:
 					rm -rf ./objects/
 					rm -rf $(PF_PATH)objects/

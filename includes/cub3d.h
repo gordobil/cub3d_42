@@ -16,6 +16,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include <sys/time.h>
+# include <math.h>
+# include "../mlx/mlx.h"
 # include "./libft.h"
 
 //COLORS
@@ -30,5 +35,6 @@ typedef struct s_cub3d
 
 /******************************** PARSING ********************************/
 //MAP
+int	prueba(int argc);
 
 #endif
