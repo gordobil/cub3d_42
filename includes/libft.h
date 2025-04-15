@@ -12,6 +12,7 @@
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
@@ -48,6 +49,7 @@ int			ft_memcmp(const void *s1, const void *s2, size_t n);
 int			ft_strlen(const char *s);
 size_t		ft_strlcpy(char	*dst, const char *src, size_t size);
 size_t		ft_strlcat(char *dst, const char *src, size_t size);
+char		*ft_strcat(char *src, char *str);
 int			ft_strcmp(char *s1, char *s2);
 int			ft_strncmp(const char *s1, const char *s2, unsigned int n);
 void		ft_bzero(void *s, size_t n);
@@ -60,8 +62,7 @@ char		*ft_substr(const char *s, unsigned int start, size_t len);
 char		*ft_strjoin(char *s1, char *s2);
 char		*ft_strtrim(const char *s1, const char *set);
 char		*ft_strmapi(const char *s, char (*f)(unsigned int, char));
-char		**ft_split(const char *s, char czzzz);
-char		*ft_strcat(char *src, char *str);
+char		**ft_split(const char *s, char c);
 
 //FT_PRINTF
 int			ft_printf(const char *arg, ...);

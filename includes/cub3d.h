@@ -35,6 +35,5 @@ typedef struct s_cub3d
 
 /******************************** PARSING ********************************/
 //MAP
-int	prueba(int argc);
 
 #endif
