@@ -92,4 +92,5 @@ fclean:				clean
 					@echo "$(WHITE) · $(BLUE)Cub3d executable removed.$(WHITE)\n"
 
 re:					fclean all
+
 .PHONY:				all clean fclean re

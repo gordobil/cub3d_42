@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ngordobi <ngordobi@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/03/03 13:18:42 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/04/15 15:03:45 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	main(int argc, char **argv)
 {
-	printf("%s\n", argv[1]);
-	prueba(argc);
+	if (argv[1])
+		printf("%s\n", argv[1]);
+	printf("%d\n", argc);
 	return (0);
 }
