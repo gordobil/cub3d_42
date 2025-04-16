@@ -16,10 +16,10 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include <sys/stat.h>
 # include <fcntl.h>
-# include <sys/time.h>
 # include <math.h>
+# include <sys/stat.h>
+# include <sys/time.h>
 # include "../mlx/mlx.h"
 # include "./libft.h"
 
@@ -30,10 +30,17 @@
 
 typedef struct s_cub3d
 {
-	char		**map;
+	char		*map_path;
+	int			map_fd;
 }				t_cub3d;
 
 /******************************** PARSING ********************************/
-//MAP
+//EXIT
+int	free_cub3d(t_cub3d *cub3d);
+int	error(int code);
+
+//FILES
+int	get_path(char *path, t_cub3d *cub3d);
+int	check_file(t_cub3d *cub3d);
 
 #endif

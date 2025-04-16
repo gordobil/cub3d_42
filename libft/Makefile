@@ -29,7 +29,7 @@ WHITE				=	\033[0m
 
 .SILENT:
 
-all:				$(NAME)
+all:				$(NAME) $(DONE)
 
 $(NAME):			$(OBJECTS)
 					@ar rcs $(NAME) $(OBJECTS)
