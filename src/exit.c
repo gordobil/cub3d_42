@@ -12,12 +12,31 @@
 
 #include "../includes/cub3d.h"
 
+int	free_matrix(char **matrix)
+{
+	int	i;
+
+	if (!matrix)
+		return (-1);
+	i = -1;
+	while (matrix[++i] != NULL)
+	{
+		free(matrix[i]);
+		matrix[i] = NULL;
+	}
+	free(matrix);
+	matrix = NULL;
+	return (0);
+}
+
 int	free_cub3d(t_cub3d *cub3d)
 {
 	if (cub3d->map_path)
 		free(cub3d->map_path);
 	if (cub3d->map_fd)
 		close(cub3d->map_fd);
+	if (cub3d->elements)
+		free_matrix(cub3d->elements);
 	return (0);
 }
 
