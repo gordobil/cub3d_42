@@ -32,7 +32,7 @@ typedef struct s_cub3d
 {
 	char		*map_path;
 	int			map_fd;
-	char		*elements[7];
+	char		**elements;
 }				t_cub3d;
 
 /******************************** PARSING ********************************/

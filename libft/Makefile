@@ -33,7 +33,6 @@ all:				$(NAME) $(DONE)
 
 $(NAME):			$(OBJECTS)
 					@ar rcs $(NAME) $(OBJECTS)
-					@mv $(NAME) ../
 					echo "$(WHITE)\n · Libft compilation complete."
 
 $(OBJ_DIR)%.o:		$(SRC_PATH)%.c | $(OBJ_DIR)

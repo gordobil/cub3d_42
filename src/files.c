@@ -16,6 +16,7 @@ int	get_path(char *path, t_cub3d *cub3d)
 {
 	int	i;
 
+	i = 0;
 	while (path[i + 1] != '\0')
 		i++;
 	if (path[i - 3] != '.' || path[i - 2] != 'c' || path[i - 1] != 'u'
@@ -58,7 +59,7 @@ int	check_elem(char *line, t_cub3d *cub3d)
 	int			i;
 	static int	j;
 
-	if (j == 7)
+	if (j > 5)
 		return (1);
 	i = 0;
 	elem_manag(elem, 1);
@@ -67,9 +68,10 @@ int	check_elem(char *line, t_cub3d *cub3d)
 		i++;
 	if (line[i] == '\0' || line[i] == '\n')
 		return (elem_manag(elem, -1), 0);
-	if (((j >= 0 && j < 4 && elem[j][0] == line[i] && elem[j][1] == line[i + 1])
-		|| (j >= 4 && j <= 5 && elem[j][0] == line[i]))
+	if ((j >= 0 && j <= 3 && elem[j][0] == line[i] && elem[j][1] == line[i + 1]
 		&& (line[i + 2] == ' ' || line[i + 2] == '	'))
+		|| ((j == 4 || j == 5) && elem[j][0] == line[i]
+		&& (line[i + 1] == ' ' || line[i + 21] == '	')))
 	{
 		if (j >= 0 && j < 4)
 			i += 2;
@@ -82,23 +84,43 @@ int	check_elem(char *line, t_cub3d *cub3d)
 			return (elem_manag(elem, -1), -1);
 		cub3d->elements[j] = ft_substr(line, i, ft_strlen(line) - i - 1);
 	}
+	if (j == 5)
+		return (j++, elem_manag(elem, -1), 1);
 	return (j++, elem_manag(elem, -1), 0);
+}
+
+int	empty_line(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] != '\0' && line[i] != '\r' && line[i] != '\n' &&
+		(line[i] == ' ' || line[i] == '	'))
+		i++;
+	if (line[i] == '\0' || line[i] == '\r' || line[i] == '\n')
+		return (1);
+	return (0);
 }
 
 int	check_file(t_cub3d *cub3d)
 {
 	char	*line;
+	int		ret;
 
-	while (cub3d->map_fd)
+	while (1)
 	{
 		line = get_next_line(cub3d->map_fd);
-		if (line == NULL)
+		if (line == NULL && cub3d->map_fd > 0)
 			break ;
-		if (check_elem(line, cub3d) < 0)
-			return (-1);
-		free(line);
+		if (empty_line(line) == 0)
+		{
+			ret = check_elem(line, cub3d);
+			if (ret != 0)
+				return (ret);
+		}
+		if (line)
+			free(line);
 		line = NULL;
 	}
-	ft_printf("%m\n", cub3d->elements);
 	return (0);
 }

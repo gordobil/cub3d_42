@@ -16,12 +16,12 @@ CC					=	gcc
 CC_FLAGS			=	-Wall -Wextra -Werror
 MLX_FLAGS			=	-L mlx/ -lmlx -lXext -lX11
 
-LIBFT				=	libft.a
-MLX					=	./mlx/libmlx_Linux.a
-
 SRC_PATH			=	./src/
 LIBFT_PATH			=	./libft/
 MLX_PATH			=	./mlx/
+
+LIBFT				=	$(LIBFT_PATH)libft.a
+MLX					=	./mlx/libmlx_Linux.a
 
 SOURCES             =   $(shell find $(SRC_PATH) -name "*.c")
 

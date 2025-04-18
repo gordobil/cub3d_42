@@ -24,7 +24,8 @@ int	ft_putmatrix(char **matrix)
 	while (matrix[i] != NULL)
 	{
 		count += ft_putstr(matrix[i]);
-		count += ft_putstr("$\n");
+		count += ft_putchar('\n');
+		//count += ft_putstr("$\n");
 		i++;
 	}
 	count += ft_putstr(matrix[i]);

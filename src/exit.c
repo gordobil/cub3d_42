@@ -21,7 +21,8 @@ int	free_matrix(char **matrix)
 	i = -1;
 	while (matrix[++i] != NULL)
 	{
-		free(matrix[i]);
+		if (matrix[i])
+			free(matrix[i]);
 		matrix[i] = NULL;
 	}
 	free(matrix);
@@ -31,12 +32,14 @@ int	free_matrix(char **matrix)
 
 int	free_cub3d(t_cub3d *cub3d)
 {
-	if (cub3d->map_path)
+	if (cub3d->map_path != NULL)
 		free(cub3d->map_path);
 	if (cub3d->map_fd)
 		close(cub3d->map_fd);
 	if (cub3d->elements)
 		free_matrix(cub3d->elements);
+	if (cub3d)
+		free(cub3d);
 	return (0);
 }
 
