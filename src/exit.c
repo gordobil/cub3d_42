@@ -49,5 +49,7 @@ int	error(int code)
 		ft_printf("Error\nInvalid arguments\n");
 	if (code == 2)
 		ft_printf("Error\nInvalid map elements\n");
+	if (code == 3)
+		ft_printf("Error\nInvalid map\n");
 	return (1);
 }

@@ -53,7 +53,17 @@ int	elem_manag(char **elem, int flag)
 	return (0);
 }
 
-int	check_elem(char *line, t_cub3d *cub3d)
+int	index_update(int i, int j, char *line)
+{
+	if (j >= 0 && j < 4)
+		i += 2;
+	else if (j >= 4 && j <= 5)
+		i += 1;
+	i = jump_empty(line, i);
+	return (i);
+}
+
+int	get_elements(char *line, t_cub3d *cub3d)
 {
 	char		*elem[7];
 	int			i;
@@ -61,45 +71,22 @@ int	check_elem(char *line, t_cub3d *cub3d)
 
 	if (j > 5)
 		return (1);
-	i = 0;
 	elem_manag(elem, 1);
-	while (line[i] != '\0' && line[i] != '\n'
-		&& (line[i] == ' ' || line[i] == '	'))
-		i++;
-	if (line[i] == '\0' || line[i] == '\n')
+	i = jump_empty(line, 0);
+	if (i == -1)
 		return (elem_manag(elem, -1), 0);
 	if ((j >= 0 && j <= 3 && elem[j][0] == line[i] && elem[j][1] == line[i + 1]
-		&& (line[i + 2] == ' ' || line[i + 2] == '	'))
-		|| ((j == 4 || j == 5) && elem[j][0] == line[i]
-		&& (line[i + 1] == ' ' || line[i + 21] == '	')))
+		&& (line[i + 2] == ' ' || line[i + 2] == '\t')) || (j >= 4 && j <= 5
+		&& elem[j][0] == line[i] && (line[i +1] == ' ' || line[i +1] == '\t')))
 	{
-		if (j >= 0 && j < 4)
-			i += 2;
-		else if (j >= 4 && j <= 5)
-			i += 1;
-		while (line[i] != '\0' && line[i] != '\n'
-			&& (line[i] == ' ' || line[i] == '	'))
-			i++;
-		if (line[i] == '\0' || line[i] == '\n')
+		i = index_update(i, j, line);
+		if (line[i] == '\0' || line[i] == '\n' || line[i] == '\r')
 			return (elem_manag(elem, -1), -1);
-		cub3d->elements[j] = ft_substr(line, i, ft_strlen(line) - i - 1);
+		cub3d->elements[j] = ft_substr(line, i, get_elem_length(i, line));
 	}
 	if (j == 5)
 		return (j++, elem_manag(elem, -1), 1);
 	return (j++, elem_manag(elem, -1), 0);
-}
-
-int	empty_line(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i] != '\0' && line[i] != '\r' && line[i] != '\n' &&
-		(line[i] == ' ' || line[i] == '	'))
-		i++;
-	if (line[i] == '\0' || line[i] == '\r' || line[i] == '\n')
-		return (1);
-	return (0);
 }
 
 int	check_file(t_cub3d *cub3d)
@@ -112,15 +99,21 @@ int	check_file(t_cub3d *cub3d)
 		line = get_next_line(cub3d->map_fd);
 		if (line == NULL && cub3d->map_fd > 0)
 			break ;
-		if (empty_line(line) == 0)
+		if (jump_empty(line, 0) >= 0)
 		{
-			ret = check_elem(line, cub3d);
+			ret = get_elements(line, cub3d);
+			if (ret == -1)
+				return (close(cub3d->map_fd), -2);
+			else if (ret == 1)
+				ret = get_map(cub3d, line);
 			if (ret != 0)
-				return (ret);
+				break ;
 		}
 		if (line)
 			free(line);
 		line = NULL;
 	}
-	return (0);
+	if (ret < 0)
+		return (close(cub3d->map_fd), ret);
+	return (close(cub3d->map_fd), check_map(cub3d));
 }
