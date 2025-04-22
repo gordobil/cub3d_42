@@ -46,12 +46,12 @@ int	error(int code);
 int	get_path(char *path, t_cub3d *cub3d);
 int	check_file(t_cub3d *cub3d);
 
-//UTILS
-int	jump_empty(char *line, int i);
-int	get_elem_length(int i, char *line);
-
 //MAP
 int	get_map(t_cub3d *cub3d, char *line);
 int	check_map(t_cub3d *cub3d);
+
+//UTILS
+int	jump_empty(char *line, int i);
+int	get_elem_length(int i, char *line);
 
 #endif

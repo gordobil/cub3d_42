@@ -21,10 +21,10 @@ int	get_path(char *path, t_cub3d *cub3d)
 		i++;
 	if (path[i - 3] != '.' || path[i - 2] != 'c' || path[i - 1] != 'u'
 		|| path[i] != 'b')
-		return (-1);
+		return (-2);
 	cub3d->map_fd = open(path, O_RDONLY);
 	if (cub3d->map_fd < 0)
-		return (close(cub3d->map_fd), -1);
+		return (close(cub3d->map_fd), -2);
 	cub3d->map_path = ft_strdup(path);
 	return (0);
 }
@@ -70,7 +70,7 @@ int	get_elements(char *line, t_cub3d *cub3d)
 	static int	j;
 
 	if (j > 5)
-		return (1);
+		return (j++, 1);
 	elem_manag(elem, 1);
 	i = jump_empty(line, 0);
 	if (i == -1)
@@ -81,11 +81,13 @@ int	get_elements(char *line, t_cub3d *cub3d)
 	{
 		i = index_update(i, j, line);
 		if (line[i] == '\0' || line[i] == '\n' || line[i] == '\r')
-			return (elem_manag(elem, -1), -1);
+			return (elem_manag(elem, -1), -2);
 		cub3d->elements[j] = ft_substr(line, i, get_elem_length(i, line));
 	}
-	if (j == 5)
-		return (j++, elem_manag(elem, -1), 1);
+	else
+		return (elem_manag(elem, -1), -2);
+	// if (j == 5)
+	// 	return (j++, elem_manag(elem, -1), 1);
 	return (j++, elem_manag(elem, -1), 0);
 }
 
@@ -97,13 +99,13 @@ int	check_file(t_cub3d *cub3d)
 	while (1)
 	{
 		line = get_next_line(cub3d->map_fd);
-		if (line == NULL && cub3d->map_fd > 0)
+		if (line == NULL)
 			break ;
 		if (jump_empty(line, 0) >= 0)
 		{
 			ret = get_elements(line, cub3d);
 			if (ret == -1)
-				return (close(cub3d->map_fd), -2);
+				return (close(cub3d->map_fd), -3);
 			else if (ret == 1)
 				ret = get_map(cub3d, line);
 			if (ret != 0)
