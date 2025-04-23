@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/04/22 13:00:29 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/04/23 13:07:05 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,3 +41,6 @@ int	main(int argc, char **argv)
 		return (free_cub3d(cub3d), error(-ret));
 	return (free_cub3d(cub3d));
 }
+
+/*	PARA EJECUTAR:  */
+//	./cub3d maps/example_map.cub
