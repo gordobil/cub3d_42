@@ -49,6 +49,7 @@ int	check_file(t_cub3d *cub3d);
 //MAP
 int	get_map(t_cub3d *cub3d, char *line);
 int	check_map(t_cub3d *cub3d);
+int	tab_replace(t_cub3d *cub3d);
 
 //UTILS
 int	jump_empty(char *line, int i);

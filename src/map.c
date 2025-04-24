@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngordobi <ngordobi@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 12:15:33 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/04/23 12:51:09 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/04/24 14:21:43 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,28 +43,68 @@ int	get_map(t_cub3d *cub3d, char *line)
 		if (!cub3d->map[0])
 			return (-4);
 		cub3d->map[1] = NULL;
-		ft_printf("\nfirst\n%m------------\n", cub3d->map);
 		i = 1;
 		return (0);
 	}
-	ft_printf("1\n");
 	new_map = malloc((i + 1) * (sizeof(char *)));
-	ft_printf("2\n");
 	if (!new_map)
 		return (-1);
-	ft_printf("3\n");
 	if (get_new_map(cub3d, new_map, line) != 0)
 		return (-1);
-	ft_printf("4\n");
 	cub3d->map = new_map;
-	ft_printf("\n%m------------\n", cub3d->map);
 	return (i++, 0);
+}
+
+int	tab_for_spaces(char *new, int k)
+{
+	new[++k] = ' ';
+	new[++k] = ' ';
+	new[++k] = ' ';
+	new[++k] = ' ';
+	return (k);
+}
+
+int	tab_replace(t_cub3d *cub3d)
+{
+	char	*new;
+	int		i;
+	int		j;
+	int		k;
+
+	i = -1;
+	while (cub3d->map[++i] != NULL)
+	{
+		k = 0;
+		j = -1;
+		while (cub3d->map[i][++j] != '\0')
+			if (cub3d->map[i][j] == '\t')
+				k++;
+		if (k > 0)
+		{
+			new = malloc((ft_strlen(cub3d->map[i]) + (k * 4)) * sizeof(char));
+			j = -1;
+			k = -1;
+			while (cub3d->map[i][++j] != '\0')
+			{
+				if (cub3d->map[i][j] == '\t')
+					k = tab_for_spaces(new, k);
+				else
+					new[++k] = cub3d->map[i][j];
+			}
+			ft_printf("[%d]%s\n", i, new);
+			free(cub3d->map[i]);
+			cub3d->map[i] = ft_strdup(new);
+			free(new);
+		}
+	}
+	return (0);
 }
 
 int	check_map(t_cub3d *cub3d)
 {
+	tab_replace(cub3d);
 	if (cub3d->elements)
-		ft_printf("%m\n................\n\n", cub3d->elements);
+		ft_printf("\n%m\n................\n\n", cub3d->elements);
 	if (cub3d->map)
 		ft_printf("%m\n", cub3d->map);
 	return (0);
