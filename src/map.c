@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 12:15:33 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/04/29 12:28:13 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/04/29 12:43:57 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ int	tab_replace(t_cub3d *cub3d)
 
 int	check_map(t_cub3d *cub3d)
 {
-	tab_replace(cub3d);
 	if (cub3d->map)
 		ft_printf("%m", cub3d->map);
 	return (0);
