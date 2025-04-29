@@ -38,21 +38,21 @@ typedef struct s_cub3d
 
 /******************************** PARSING ********************************/
 //EXIT
-int	free_matrix(char **matrix);
-int	free_cub3d(t_cub3d *cub3d);
-int	error(int code);
+int		free_matrix(char **matrix);
+int		free_cub3d(t_cub3d *cub3d);
+int		error(int code);
 
 //FILES
-int	get_path(char *path, t_cub3d *cub3d);
-int	check_file(t_cub3d *cub3d);
+int		get_path(char *path, t_cub3d *cub3d);
+int		check_file(t_cub3d *cub3d);
 
 //MAP
-int	get_map(t_cub3d *cub3d, char *line);
-int	check_map(t_cub3d *cub3d);
-int	tab_replace(t_cub3d *cub3d);
+int		get_map(t_cub3d *cub3d, char *line);
+int		check_map(t_cub3d *cub3d);
+int		tab_replace(t_cub3d *cub3d);
 
 //UTILS
-int	jump_empty(char *line, int i);
-int	get_elem_length(int i, char *line);
+int		jump_empty(char *line, int i);
+int		get_elem_length(int i, char *line);
 
 #endif
