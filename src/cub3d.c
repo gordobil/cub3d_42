@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/04/29 13:08:38 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/04/29 13:40:33 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_cub3d	*init_cub3d(void)
 	cub3d->elements = malloc(7 * sizeof(char *));
 	if (!cub3d->elements)
 		return (free(cub3d), NULL);
+	cub3d->start_pos = 'X';
 	return (cub3d);
 }
 

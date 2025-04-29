@@ -115,5 +115,5 @@ int	check_file(t_cub3d *cub3d)
 	}
 	if (ret < 0)
 		return (close(cub3d->map_fd), ret);
-	return (close(cub3d->map_fd), tab_replace(cub3d), check_map(cub3d));
+	return (close(cub3d->map_fd), tab_replace(cub3d), map_check(cub3d));
 }

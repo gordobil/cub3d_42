@@ -40,6 +40,7 @@ typedef struct s_cub3d
 	int			map_fd;
 	char		**map;
 	char		**elements;
+	char		start_pos;
 }				t_cub3d;
 
 /******************************** PARSING ********************************/
@@ -52,10 +53,12 @@ int		error(int code);
 int		get_path(char *path, t_cub3d *cub3d);
 int		check_file(t_cub3d *cub3d);
 
+//MAP_CHECK
+int		map_check(t_cub3d *cub3d);
+
 //MAP
-int		get_map(t_cub3d *cub3d, char *line);
-int		check_map(t_cub3d *cub3d);
 int		tab_replace(t_cub3d *cub3d);
+int		get_map(t_cub3d *cub3d, char *line);
 
 //UTILS
 int		jump_empty(char *line, int i);
