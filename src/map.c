@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 12:15:33 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/04/29 12:43:57 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/04/29 13:34:18 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	get_new_map(t_cub3d *cub3d, char **new_map, char *line)
 	new_map[i] = ft_substr(line, 0, ft_strlen(line) - 2);
 	new_map[i + 1] = NULL;
 	if (!new_map || !new_map[i])
-		return (free_matrix(new_map), -4);
+		return (free_matrix(new_map), -ERROR_FATAL);
 	return (0);
 }
 
@@ -38,19 +38,19 @@ int	get_map(t_cub3d *cub3d, char *line)
 	{
 		cub3d->map = malloc(2 * sizeof(char *));
 		if (!cub3d->map)
-			return (-1);
+			return (-ERROR_FATAL);
 		cub3d->map[0] = ft_substr(line, 0, ft_strlen(line) - 2);
 		if (!cub3d->map[0])
-			return (-4);
+			return (-ERROR_FATAL);
 		cub3d->map[1] = NULL;
 		i = 1;
 		return (0);
 	}
 	new_map = malloc((i + 2) * (sizeof(char *)));
 	if (!new_map)
-		return (-1);
+		return (-ERROR_FATAL);
 	if (get_new_map(cub3d, new_map, line) != 0)
-		return (-1);
+		return (-ERROR_FATAL);
 	free_matrix(cub3d->map);
 	cub3d->map = new_map;
 	i++;
@@ -61,6 +61,7 @@ void	tab_for_spaces(t_cub3d *cub3d, char *new, int i)
 {
 	int	j;
 	int	k;
+	int	four;
 
 	j = -1;
 	k = 0;
@@ -68,14 +69,12 @@ void	tab_for_spaces(t_cub3d *cub3d, char *new, int i)
 	{
 		if (cub3d->map[i][j] == '\t')
 		{
-			new[k] = ' ';
-			k++;
-			new[k] = ' ';
-			k++;
-			new[k] = ' ';
-			k++;
-			new[k] = ' ';
-			k++;
+			four = k + 4;
+			while (k < four)
+			{
+				new[k] = ' ';
+				k++;
+			}
 		}
 		else
 			new[k++] = cub3d->map[i][j];
@@ -113,7 +112,13 @@ int	tab_replace(t_cub3d *cub3d)
 
 int	check_map(t_cub3d *cub3d)
 {
-	if (cub3d->map)
-		ft_printf("%m", cub3d->map);
+	int		i;
+	int		j;
+
+	i = -1;
+	j = 0;
+	i++;
+	j++;
+	ft_printf("%m", cub3d->map);
 	return (0);
 }

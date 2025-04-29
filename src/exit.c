@@ -17,7 +17,7 @@ int	free_matrix(char **matrix)
 	int	i;
 
 	if (!matrix)
-		return (-1);
+		return (-ERROR_FATAL);
 	i = -1;
 	while (matrix[++i] != NULL)
 	{
@@ -47,19 +47,19 @@ int	free_cub3d(t_cub3d *cub3d)
 	if (cub3d)
 		free(cub3d);
 	if (ret != 0)
-		return (error(1));
+		return (error(ERROR_FATAL));
 	return (0);
 }
 
 int	error(int code)
 {
-	if (code == 1)
+	if (code == ERROR_FATAL)
 		ft_printf("Error\nFatal.\n");
-	else if (code == 2)
+	else if (code == ERROR_ARGS)
 		ft_printf("Error\nInvalid arguments.\n");
-	else if (code == 3)
+	else if (code == ERROR_MAP_ELEMS)
 		ft_printf("Error\nInvalid map elements.\n");
-	else if (code == 4)
+	else if (code == ERROR_MAP)
 		ft_printf("Error\nInvalid map.\n");
 	return (1);
 }

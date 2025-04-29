@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/04/24 13:47:05 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/04/29 13:08:38 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int	main(int argc, char **argv)
 
 	cub3d = init_cub3d();
 	if (cub3d == NULL)
-		return (error(1));
+		return (error(ERROR_FATAL));
 	if (argc != 2 || !argv[1] || get_path(argv[1], cub3d) != 0)
-		return (free_cub3d(cub3d), error(2));
+		return (free_cub3d(cub3d), error(ERROR_ARGS));
 	ret = check_file(cub3d);
 	if (ret < 0)
 		return (free_cub3d(cub3d), error(-ret));

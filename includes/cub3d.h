@@ -23,6 +23,12 @@
 # include "../mlx/mlx.h"
 # include "./libft.h"
 
+//ERRORS
+# define ERROR_FATAL		1
+# define ERROR_ARGS			2
+# define ERROR_MAP_ELEMS	3
+# define ERROR_MAP			4
+
 //COLORS
 # define BLUE "\033[1;34m"
 # define YELLOW "\033[0;32m"
