@@ -12,24 +12,6 @@
 
 #include "../includes/cub3d.h"
 
-int	free_matrix(char **matrix)
-{
-	int	i;
-
-	if (!matrix)
-		return (-ERROR_FATAL);
-	i = -1;
-	while (matrix[++i] != NULL)
-	{
-		if (matrix[i])
-			free(matrix[i]);
-		matrix[i] = NULL;
-	}
-	free(matrix);
-	matrix = NULL;
-	return (0);
-}
-
 int	free_cub3d(t_cub3d *cub3d)
 {
 	int	ret;

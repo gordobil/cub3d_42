@@ -41,6 +41,8 @@ typedef struct s_cub3d
 	char		**map;
 	char		**elements;
 	char		start_pos;
+	int			start_y;
+	int			start_x;
 }				t_cub3d;
 
 /******************************** PARSING ********************************/

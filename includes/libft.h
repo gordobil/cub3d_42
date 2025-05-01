@@ -27,6 +27,11 @@ int			ft_isprint(int c);
 int			ft_toupper(int c);
 int			ft_tolower(int c);
 
+//CUSTOMS
+int			flood_fill(int y, int x, char **map, char pos);
+int			free_matrix(char **matrix);
+char		*get_next_line(int fd);
+
 //FDS
 void		ft_putchar_fd(char c, int fd);
 void		ft_putstr_fd(char *s, int fd);
@@ -63,7 +68,6 @@ char		*ft_strjoin(char *s1, char *s2);
 char		*ft_strtrim(const char *s1, const char *set);
 char		*ft_strmapi(const char *s, char (*f)(unsigned int, char));
 char		**ft_split(const char *s, char c);
-char		*get_next_line(int fd);
 
 //FT_PRINTF
 int			ft_printf(const char *arg, ...);
