@@ -31,6 +31,8 @@ int			ft_tolower(int c);
 int			flood_fill(int y, int x, char **map, char pos);
 int			free_matrix(char **matrix);
 char		*get_next_line(int fd);
+char		**matrix_dup(char **matrix);
+int			matrix_size(char **matrix);
 
 //FDS
 void		ft_putchar_fd(char c, int fd);

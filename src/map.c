@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ngordobi <ngordobi@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 12:15:33 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/04/29 13:55:08 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/05/05 13:27:38 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	tab_for_spaces(t_cub3d *cub3d, char *new, int i)
 	int	j;
 	int	k;
 	int	four;
-	
+
 	j = -1;
 	k = 0;
 	while (cub3d->map[i][++j] != '\0')
@@ -32,7 +32,7 @@ void	tab_for_spaces(t_cub3d *cub3d, char *new, int i)
 			}
 		}
 		else
-		new[k++] = cub3d->map[i][j];
+			new[k++] = cub3d->map[i][j];
 	}
 	new[k] = '\0';
 }
@@ -43,15 +43,15 @@ int	tab_replace(t_cub3d *cub3d)
 	int		i;
 	int		j;
 	int		k;
-	
+
 	i = -1;
 	while (cub3d->map[++i] != NULL)
 	{
 		k = 0;
 		j = -1;
 		while (cub3d->map[i][++j] != '\0')
-		if (cub3d->map[i][j] == '\t')
-		k++;
+			if (cub3d->map[i][j] == '\t')
+				k++;
 		if (k > 0)
 		{
 			j = ft_strlen(cub3d->map[i]);

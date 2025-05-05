@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   matrix_size.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngordobi <ngordobi@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: ngordobi <ngordobi@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 13:07:06 by ngordobi          #+#    #+#             */
-/*   Updated: 2024/01/09 13:56:59 by ngordobi         ###   ########.fr       */
+/*   Created: 2025/04/16 12:44:14 by ngordobi          #+#    #+#             */
+/*   Updated: 2025/05/05 11:48:00 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-int	ft_strlen(const char *s)
+int	matrix_size(char **matrix)
 {
 	int	i;
 
-	if (!s)
+	if (!matrix)
 		return (0);
 	i = 0;
-	while (s[i] != '\0')
+	while (matrix[i] && matrix[i] != NULL)
 		i++;
 	return (i);
 }
