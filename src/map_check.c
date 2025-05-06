@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 12:15:33 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/05/05 13:26:38 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/05/06 10:53:01 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@ int	playability_check(t_cub3d *cub3d)
 {
 	char	**dup;
 
+	if (cub3d->start_pos == 'X' || cub3d->start_y <= 0 || cub3d->start_x <= 0
+		|| (cub3d->start_pos != 'N' && cub3d->start_pos != 'S'
+		&& cub3d->start_pos != 'E' && cub3d->start_pos != 'W'))
+		return (-ERROR_MAP);
 	dup = matrix_dup(cub3d->map);
 	if (flood_fill(cub3d->start_y, cub3d->start_x, dup, cub3d->start_pos) < 0)
 		return (free_matrix(dup), -ERROR_MAP);
