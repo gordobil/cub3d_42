@@ -14,14 +14,14 @@ NAME				=	cub3d
 
 CC					=	gcc
 CC_FLAGS			=	-Wall -Wextra -Werror
-MLX_FLAGS			=	-L mlx/ -lmlx -lXext -lX11
+MLX_FLAGS			=	-L mlx_src/ -lmlx -lXext -lX11
 
 SRC_PATH			=	./src/
 LIBFT_PATH			=	./libft/
-MLX_PATH			=	./mlx/
+MLX_PATH			=	./mlx_src/
 
 LIBFT				=	$(LIBFT_PATH)libft.a
-MLX					=	./mlx/libmlx_Linux.a
+MLX					=	./mlx_src/libmlx_Linux.a
 
 SOURCES             =   $(shell find $(SRC_PATH) -name "*.c")
 
@@ -58,7 +58,7 @@ export CUB3D
 all:				$(LIBFT) $(MLX) $(NAME)
 
 $(NAME):			$(OBJECTS)
-					@$(CC) $(CC_FLAGS) $(OBJECTS) $(LIBFT) $(MLX) -o $(NAME)
+					@$(CC) $(CC_FLAGS) $(OBJECTS) $(LIBFT) $(MLX) -o $(NAME) $(MLX_FLAGS)
 
 $(OBJ_DIR)%.o:		$(SRC_PATH)%.c | $(OBJ_DIR)
 					@mkdir -p $(dir $@)

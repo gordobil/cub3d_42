@@ -6,11 +6,11 @@
 /*   By: ngordobi <ngordobi@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 12:15:33 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/05/05 13:27:38 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/05/06 11:32:55 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 void	tab_for_spaces(t_cub3d *cub3d, char *new, int i)
 {

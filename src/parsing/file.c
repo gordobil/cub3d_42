@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 int	get_path(char *path, t_cub3d *cub3d)
 {
@@ -81,11 +81,11 @@ int	get_elements(char *line, t_cub3d *cub3d)
 	{
 		i = index_update(i, j, line);
 		if (line[i] == '\0' || line[i] == '\n' || line[i] == '\r')
-			return (elem_manag(elem, -1), -ERROR_MAP_ELEMS);
+			return (elem_manag(elem, -1), -ERROR_ELEMS);
 		cub3d->elements[j] = ft_substr(line, i, get_elem_length(i, line));
 	}
 	else
-		return (elem_manag(elem, -1), -ERROR_MAP_ELEMS);
+		return (elem_manag(elem, -1), -ERROR_ELEMS);
 	return (j++, elem_manag(elem, -1), 0);
 }
 
@@ -102,8 +102,8 @@ int	check_file(t_cub3d *cub3d)
 		if (jump_empty(line, 0) >= 0)
 		{
 			ret = get_elements(line, cub3d);
-			if (ret == -ERROR_MAP_ELEMS)
-				return (close(cub3d->map_fd), -ERROR_MAP_ELEMS);
+			if (ret == -ERROR_ELEMS)
+				return (close(cub3d->map_fd), -ERROR_ELEMS);
 			else if (ret == 1)
 				ret = get_map(cub3d, line);
 			if (ret != 0)
