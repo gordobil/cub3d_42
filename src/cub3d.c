@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngordobi <ngordobi@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/05/06 12:57:23 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/05/07 18:06:36 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,17 @@
 
 int	init_cub3d(t_cub3d *cub3d)
 {
+	int	i;
+
 	cub3d->map_path = NULL;
 	cub3d->map_fd = 0;
 	cub3d->map = NULL;
 	cub3d->elements = malloc(7 * sizeof(char *));
 	if (!cub3d->elements)
 		return (free_cub3d(cub3d), -ERROR_FATAL);
+	i = -1;
+	while (++i < 7)
+		cub3d->elements[i] = NULL;
 	cub3d->start_pos = 'X';
 	cub3d->start_y = -1;
 	cub3d->start_x = -1;
@@ -38,7 +43,7 @@ int	main(int argc, char **argv)
 	ret = check_file(&cub3d);
 	if (ret < 0)
 		return (free_cub3d(&cub3d), error(-ret));
-/* 	if (mlx_management(cub3d) < 0)
-		return (free_cub3d(&cub3d), error(ERROR_MLX)); */
+	if (mlx_management(cub3d) < 0)
+		return (free_cub3d(&cub3d), error(ERROR_MLX));
 	return (free_cub3d(&cub3d));
 }

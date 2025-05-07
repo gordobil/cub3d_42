@@ -17,21 +17,15 @@ int	free_cub3d(t_cub3d *cub3d)
 	int	ret;
 
 	ret = 0;
-	if (cub3d->map_path != NULL)
+	if (cub3d->map_path)
 		free(cub3d->map_path);
-	if (cub3d->map_fd)
+	if (cub3d->map_fd > 0)
 		if (!close(cub3d->map_fd))
 			ret += -1;
 	if (cub3d->elements)
 		ret += free_matrix(cub3d->elements);
 	if (cub3d->map)
 		ret += free_matrix(cub3d->map);
-	if (cub3d->mlx)
-		free(cub3d->mlx);
-	if (cub3d->window)
-		free(cub3d->window);
-	// if (cub3d)
-	// 	free(cub3d);
 	if (ret != 0)
 		return (error(ERROR_FATAL));
 	return (0);

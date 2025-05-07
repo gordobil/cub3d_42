@@ -49,7 +49,7 @@
 
 typedef struct s_cub3d
 {
-/********** INFO **********/
+//         INFO         //
 	char		*map_path;
 	int			map_fd;
 	char		**map;
@@ -57,7 +57,7 @@ typedef struct s_cub3d
 	char		start_pos;
 	int			start_y;
 	int			start_x;
-/********** MLX ***********/
+//          MLX         //
 	void		*mlx;
 	void		*window;
 }				t_cub3d;
