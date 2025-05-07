@@ -47,7 +47,8 @@ int	elem_manag(char **elem, int flag)
 	{
 		i = -1;
 		while (elem[++i] != NULL && i < 7)
-			free (elem[i]);
+			if (elem[i])
+				free (elem[i]);
 		elem = NULL;
 	}
 	return (0);
@@ -97,7 +98,7 @@ int	check_file(t_cub3d *cub3d)
 	while (1)
 	{
 		line = get_next_line(cub3d->map_fd);
-		if (line == NULL)
+		if (line == NULL || !line)
 			break ;
 		if (jump_empty(line, 0) >= 0)
 		{
@@ -109,11 +110,11 @@ int	check_file(t_cub3d *cub3d)
 			if (ret != 0)
 				break ;
 		}
-		if (line)
-			free(line);
-		line = NULL;
+		free(line);
 	}
 	if (ret < 0)
 		return (close(cub3d->map_fd), ret);
+	if (!cub3d->map || !cub3d->map[0])
+		return (close(cub3d->map_fd), -ERROR_MAP);
 	return (close(cub3d->map_fd), tab_replace(cub3d), map_check(cub3d));
 }
