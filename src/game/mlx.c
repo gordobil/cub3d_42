@@ -23,6 +23,24 @@ int	handle_input(int keysym, t_cub3d *cub3d)
 {
 	if (keysym == Q || keysym == ESC)
 		close_window(cub3d);
+	else if (keysym == W || keysym == UP)
+		cub3d->player->y += 1;
+	else if (keysym == S || keysym == DOWN)
+		cub3d->player->y -= 1;
+	else if (keysym == D || keysym == RIGHT)
+	{
+		if (cub3d->player->ang == 359)
+			cub3d->player->ang = 0;
+		else
+			cub3d->player->ang += 1;
+	}
+	else if (keysym == A || keysym == LEFT)
+	{
+		if (cub3d->player->ang == 0)
+			cub3d->player->ang = 359;
+		else
+			cub3d->player->ang -= 1;
+	}
 	return (0);
 }
 
@@ -36,7 +54,7 @@ int	mlx_management(t_cub3d cub3d)
 	cub3d.mlx = mlx_init();
 	if (!cub3d.mlx)
 		return (free(cub3d.mlx), free_cub3d(&cub3d), -ERROR_MLX);
-	cub3d.window = mlx_new_window(cub3d.mlx, 1080, 720, "cub3d");
+	cub3d.window = mlx_new_window(cub3d.mlx, WD, HE, "cub3d");
 	if (!cub3d.window)
 		return (free(cub3d.mlx), free(cub3d.window),
 			free_cub3d(&cub3d), -ERROR_MLX);

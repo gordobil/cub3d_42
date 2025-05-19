@@ -26,6 +26,8 @@ int	free_cub3d(t_cub3d *cub3d)
 		ret += free_matrix(cub3d->elements);
 	if (cub3d->map)
 		ret += free_matrix(cub3d->map);
+	if (cub3d->player)
+		free(cub3d->player);
 	if (ret != 0)
 		return (error(ERROR_FATAL));
 	return (0);
@@ -34,14 +36,14 @@ int	free_cub3d(t_cub3d *cub3d)
 int	error(int code)
 {
 	if (code == ERROR_FATAL)
-		ft_printf("Error\nFatal.\n");
+		ft_printf("Error\nFatal\n");
 	else if (code == ERROR_ARGS)
-		ft_printf("Error\nInvalid arguments.\n");
+		ft_printf("Error\nInvalid arguments\n");
 	else if (code == ERROR_ELEMS)
-		ft_printf("Error\nInvalid map elements.\n");
+		ft_printf("Error\nInvalid map elements\n");
 	else if (code == ERROR_MAP)
-		ft_printf("Error\nInvalid map.\n");
+		ft_printf("Error\nInvalid map\n");
 	else if (code == ERROR_MLX)
-		ft_printf("Error\nMinilbx error.\n");
+		ft_printf("Error\nMinilbx error\n");
 	return (1);
 }

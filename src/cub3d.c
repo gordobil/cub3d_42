@@ -6,11 +6,25 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:18:42 by ngordobi          #+#    #+#             */
-/*   Updated: 2025/05/07 18:06:36 by ngordobi         ###   ########.fr       */
+/*   Updated: 2025/05/19 18:18:17 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void	init_player(t_cub3d *cub3d, t_player *player)
+{
+	player->x = (cub3d->start_x * SQ) - (SQ / 2);
+	player->y = (cub3d->start_y * SQ) - (SQ / 2);
+	if (cub3d->start_pos == 'W')
+		player->ang = 0;
+	else if (cub3d->start_pos == 'N')
+		player->ang = 90;
+	else if (cub3d->start_pos == 'E')
+		player->ang = 180;
+	else if (cub3d->start_pos == 'S')
+		player->ang = 270;
+}
 
 int	init_cub3d(t_cub3d *cub3d)
 {
@@ -28,6 +42,9 @@ int	init_cub3d(t_cub3d *cub3d)
 	cub3d->start_pos = 'X';
 	cub3d->start_y = -1;
 	cub3d->start_x = -1;
+	cub3d->player = malloc(sizeof(t_player));
+	if (!cub3d->player)
+		return (free_cub3d(cub3d), -ERROR_FATAL);
 	return (0);
 }
 
@@ -43,6 +60,7 @@ int	main(int argc, char **argv)
 	ret = check_file(&cub3d);
 	if (ret < 0)
 		return (free_cub3d(&cub3d), error(-ret));
+	init_player(&cub3d, cub3d.player);
 	if (mlx_management(cub3d) < 0)
 		return (free_cub3d(&cub3d), error(ERROR_MLX));
 	return (free_cub3d(&cub3d));
