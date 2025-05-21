@@ -23,6 +23,11 @@
 # include "../mlx_src/mlx.h"
 # include "./libft.h"
 
+// SIZES
+# define SQ				32
+# define HE				720
+# define WD				1280
+
 // KEYS
 # define W 				119
 # define S 				115
@@ -43,9 +48,17 @@
 # define ERROR_MLX		5
 
 // COLORS
-# define BLUE "\033[1;34m"
-# define YELLOW "\033[0;32m"
-# define WHITE "\033[0m"
+# define BLUE			"\033[1;34m"
+# define YELLOW			"\033[0;32m"
+# define WHITE			"\033[0m"
+
+typedef struct s_player
+{
+	int			x;
+	int			y;
+	int			ang;
+	int			speed;
+}				t_player;
 
 typedef struct s_cub3d
 {
@@ -55,14 +68,15 @@ typedef struct s_cub3d
 	char		**map;
 	char		**elements;
 	char		start_pos;
-	int			start_y;
 	int			start_x;
-//          MLX         //
+	int			start_y;
+//         GAME         //
 	void		*mlx;
 	void		*window;
+	t_player	*player;
 }				t_cub3d;
 
-/********************************** MLX **********************************/
+/********************************* GAME **********************************/
 // MLX
 int		mlx_management(t_cub3d cub3d);
 
