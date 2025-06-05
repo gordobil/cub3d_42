@@ -14,14 +14,14 @@ NAME				=	cub3d
 
 CC					=	gcc
 CC_FLAGS			=	-Wall -Wextra -Werror
-MLX_FLAGS			=	-L mlx_src/ -lmlx -lXext -lX11
+MLX_FLAGS			=	-L mlx/ -lmlx -lXext -lX11 -lm
 
 SRC_PATH			=	./src/
 LIBFT_PATH			=	./libft/
-MLX_PATH			=	./mlx_src/
+MLX_PATH			=	./mlx/
 
 LIBFT				=	$(LIBFT_PATH)libft.a
-MLX					=	./mlx_src/libmlx_Linux.a
+MLX					=	./mlx/libmlx_Linux.a
 
 SOURCES             =   $(shell find $(SRC_PATH) -name "*.c")
 

@@ -20,8 +20,15 @@
 # include <math.h>
 # include <sys/stat.h>
 # include <sys/time.h>
-# include "../mlx_src/mlx.h"
+# include "../mlx/mlx.h"
 # include "./libft.h"
+
+// SIZES
+# define SQ				32
+# define HE				720
+# define WD				1280
+# define MINI_SCALE     0.2
+# define MINI_TILE      (int)(SQ * MINI_SCALE)
 
 // KEYS
 # define W 				119
@@ -42,28 +49,42 @@
 # define ERROR_MAP		4
 # define ERROR_MLX		5
 
+// MATHS
+# define M_PI 3.14159265358979323846
+# define DEG_TO_RAD(angle) ((angle) * M_PI / 180)
+
 // COLORS
-# define BLUE "\033[1;34m"
-# define YELLOW "\033[0;32m"
-# define WHITE "\033[0m"
+# define BLUE			"\033[1;34m"
+# define YELLOW			"\033[0;32m"
+# define WHITE			"\033[0m"
+
+typedef struct s_player
+{
+	int			x;
+	int			y;
+	int			ang;
+	int			speed;
+}				t_player;
 
 typedef struct s_cub3d
 {
-/********** INFO **********/
+//         INFO         //
 	char		*map_path;
 	int			map_fd;
 	char		**map;
 	char		**elements;
 	char		start_pos;
-	int			start_y;
 	int			start_x;
-/********** MLX ***********/
+	int			start_y;
+//         GAME         //
 	void		*mlx;
 	void		*window;
+	t_player	*player;
 }				t_cub3d;
 
-/********************************** MLX **********************************/
+/********************************* GAME **********************************/
 // MLX
+void 	draw_minimap(t_cub3d *cub3d);
 int		mlx_management(t_cub3d cub3d);
 
 /******************************** PARSING ********************************/
