@@ -14,7 +14,7 @@ NAME				=	cub3d
 
 CC					=	gcc
 CC_FLAGS			=	-Wall -Wextra -Werror
-MLX_FLAGS			=	-L mlx_src/ -lmlx -lXext -lX11
+MLX_FLAGS			=	-L mlx_src/ -lmlx -lXext -lX11 -lm
 
 SRC_PATH			=	./src/
 LIBFT_PATH			=	./libft/

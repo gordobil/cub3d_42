@@ -27,6 +27,8 @@
 # define SQ				32
 # define HE				720
 # define WD				1280
+# define MINI_SCALE     0.2
+# define MINI_TILE      (int)(SQ * MINI_SCALE)
 
 // KEYS
 # define W 				119
@@ -46,6 +48,10 @@
 # define ERROR_ELEMS	3
 # define ERROR_MAP		4
 # define ERROR_MLX		5
+
+// MATHS
+# define M_PI 3.14159265358979323846
+# define DEG_TO_RAD(angle) ((angle) * M_PI / 180)
 
 // COLORS
 # define BLUE			"\033[1;34m"
@@ -78,6 +84,7 @@ typedef struct s_cub3d
 
 /********************************* GAME **********************************/
 // MLX
+void 	draw_minimap(t_cub3d *cub3d);
 int		mlx_management(t_cub3d cub3d);
 
 /******************************** PARSING ********************************/

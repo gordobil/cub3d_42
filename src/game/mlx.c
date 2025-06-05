@@ -19,6 +19,7 @@ int	close_window(t_cub3d *cub3d)
 	return (exit(0), 0);
 }
 
+<<<<<<< HEAD
 int	handle_input(int keysym, t_cub3d *cub3d)
 {
 	if (keysym == Q || keysym == ESC)
@@ -28,6 +29,56 @@ int	handle_input(int keysym, t_cub3d *cub3d)
 	else if (keysym == S || keysym == DOWN)
 		cub3d->player->y -= 1;
 	else if (keysym == D || keysym == RIGHT)
+=======
+int get_matrix_height(char **matrix)
+{
+    int i = 0;
+    while (matrix[i])
+        i++;
+    return i;
+}
+
+int is_walkable(t_cub3d *cub3d, int new_x, int new_y)
+{
+    int map_x = new_x / SQ;
+    int map_y = new_y / SQ;
+
+    if (map_y < 0 || map_y >= get_matrix_height(cub3d->map) ||
+        map_x < 0 || map_x >= (int)ft_strlen(cub3d->map[map_y]))
+        return (0); // fuera del mapa
+
+    if (cub3d->map[map_y][map_x] == '1')
+        return (0);
+
+    return (1);
+}
+
+int	handle_input(int keysym, t_cub3d *cub3d)
+{
+	int new_x;
+	int new_y;
+
+	new_x = 0;
+	new_y = 0;
+	if (keysym == Q || keysym == ESC)
+		close_window(cub3d);
+	if (keysym == W || keysym == UP)
+	{
+		new_x = cub3d->player->x + cos(DEG_TO_RAD(cub3d->player->ang)) * cub3d->player->speed;
+		new_y = cub3d->player->y + sin(DEG_TO_RAD(cub3d->player->ang)) * cub3d->player->speed;
+		if (is_walkable(cub3d, new_x, new_y))
+		{
+			printf("Entro %d\n", new_y);
+			cub3d->player->x = new_x;
+			cub3d->player->y = new_y;
+		}
+		else
+			printf("No ntro\n");
+	}
+	else if (keysym == S || keysym == DOWN)
+                cub3d->player->y += 1 * cub3d->player->speed;
+	if (keysym == D || keysym == RIGHT)
+>>>>>>> main
 	{
 		if (cub3d->player->ang == 359)
 			cub3d->player->ang = 0;
@@ -44,9 +95,16 @@ int	handle_input(int keysym, t_cub3d *cub3d)
 	return (0);
 }
 
+<<<<<<< HEAD
 int	no_event(void)
 {
 	return (0);
+=======
+int render_frame(t_cub3d *cub3d)
+{
+    draw_minimap(cub3d);
+    return (0);
+>>>>>>> main
 }
 
 int	mlx_management(t_cub3d cub3d)
@@ -59,7 +117,11 @@ int	mlx_management(t_cub3d cub3d)
 		return (free(cub3d.mlx), free(cub3d.window),
 			free_cub3d(&cub3d), -ERROR_MLX);
 	mlx_key_hook(cub3d.window, &handle_input, &cub3d);
+<<<<<<< HEAD
 	mlx_loop_hook(cub3d.mlx, &no_event, &cub3d);
+=======
+	mlx_loop_hook(cub3d.mlx, &render_frame, &cub3d);
+>>>>>>> main
 	mlx_hook(cub3d.window, 17, 1, close_window, &cub3d);
 	mlx_loop(cub3d.mlx);
 	return (free(cub3d.mlx), free(cub3d.window), 0);
